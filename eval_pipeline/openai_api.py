@@ -1,7 +1,6 @@
-import openai
-
 from __future__ import annotations
 from dataclasses import asdict, dataclass
+import openai
 import logging
 import os
 from typing_extensions import Literal
