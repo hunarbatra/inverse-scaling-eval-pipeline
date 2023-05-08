@@ -29,8 +29,12 @@ from eval_pipeline.dataset import (
 from eval_pipeline.numeric_parser import BasicParser
 from eval_pipeline.openai_api import APIParameters, BaseGPT3Model, OpenAIModel, call_api, OpenaAIModelList
 
-OPENAI_API_BASE_URL = "https://api.openai.com/v1/engines"
+# OPENAI_API_BASE_URL = "https://api.openai.com/v1/engines"
+# load_dotenv()
+# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
 load_dotenv()
+OPENAI_API_BASE_URL = os.getenv("OPENAI_API_BASE")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # DEBUG: counting errors
