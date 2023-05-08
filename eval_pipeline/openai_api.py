@@ -55,9 +55,8 @@ class APIParameters:
     stop: Optional[list[str]] = None
     echo: bool = False
 
-
-OPENAI_API_BASE_URL = "https://api.openai.com/v1/engines"
 load_dotenv()
+OPENAI_API_BASE_URL = os.getenv("OPENAI_API_BASE")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 def call_api(
@@ -106,6 +105,7 @@ def _call_api(
         "Content-Type": "application/json",
     }
 
-    url = os.path.join(OPENAI_API_BASE_URL, model_name, "completions")
+    # url = os.path.join(OPENAI_API_BASE_URL, model_name, "completions")
+    url = OPENAI_API_BASE_URL
     response = requests.post(url, json=data, headers=headers)
     return response
