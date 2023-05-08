@@ -1,3 +1,5 @@
+import openai
+
 from __future__ import annotations
 from dataclasses import asdict, dataclass
 import logging
@@ -59,6 +61,9 @@ load_dotenv()
 OPENAI_API_BASE_URL = os.getenv("OPENAI_API_BASE")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
+openai.api_key = OPENAI_API_KEY
+openai.api_base = OPENAI_API_BASE_URL
+
 def call_api(
     prompt: Union[str, list[str]],
     model_name: OpenAIModel,
@@ -107,6 +112,14 @@ def _call_api(
     }
 
     # url = os.path.join(OPENAI_API_BASE_URL, model_name, "completions")
-    url = OPENAI_API_BASE_URL
-    response = requests.post(url, json=data, headers=headers)
+    # url = OPENAI_API_BASE_URL
+    # response = requests.post(url, json=data, headers=headers)
+    response = openai.Completion.create(
+        model=model_name,
+        prompt=prompt,
+        temperature=0.0,
+        max_tokens=1,
+        logprobs=100,
+        n=1
+    )
     return response
