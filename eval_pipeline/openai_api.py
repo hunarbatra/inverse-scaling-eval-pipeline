@@ -97,6 +97,7 @@ def _call_api(
     # not just the top 5
     data = {
         "prompt": prompt,
+        "model": model_name,
         **asdict(api_params),
     }
 
